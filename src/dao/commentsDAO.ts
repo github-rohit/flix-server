@@ -8,7 +8,7 @@ export default class CommentsDAO {
       return;
     }
     try {
-      comments = await conn.db(process.env.MFLIX_NS).collection('comments');
+      comments = await conn.db(process.env.FLIX_NS).collection('comments');
     } catch (e) {
       console.error(`Unable to establish collection handles in userDAO: ${e}`);
     }

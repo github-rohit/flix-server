@@ -3,11 +3,13 @@ import cors from 'cors';
 import morgan from 'morgan';
 import movies from './api/movies.route';
 import users from './api/users.route';
+import header from './middleware/header';
 
 const app = express();
 
 app.use(cors());
 process.env.NODE_ENV !== 'prod' && app.use(morgan('dev'));
+app.use(header);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

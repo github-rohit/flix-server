@@ -10,8 +10,8 @@ export default class MoviesDAO {
       return;
     }
     try {
-      mflix = await conn.db(process.env.MFLIX_NS);
-      movies = await conn.db(process.env.MFLIX_NS).collection('movies');
+      mflix = await conn.db(process.env.FLIX_NS);
+      movies = await conn.db(process.env.FLIX_NS).collection('movies');
     } catch (e) {
       console.error(
         `Unable to establish a collection handle in moviesDAO: ${e}`
@@ -270,8 +270,7 @@ export default class MoviesDAO {
 
     try {
       const moviesList = await displayCursor.toArray();
-      const totalNumMovies =
-        page === 0 ? await movies.countDocuments(query) : 0;
+      const totalNumMovies = await movies.countDocuments(query);
 
       return { moviesList, totalNumMovies };
     } catch (e) {
